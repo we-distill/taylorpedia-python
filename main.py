@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 from bs4 import BeautifulSoup
 
@@ -50,7 +51,11 @@ def process_page(url, html):
     return links[:LIMIT_PER_PAGE]
 
 
-# Entry point
-url = input("Please provide a URL: ")
-fetch_page(url)
-print(f'Total pages fetched: {global_counter}')
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python main.py <url>")
+        sys.exit(1)
+    
+    url = sys.argv[1]
+    fetch_page(url)
+    print(f'Total pages fetched: {global_counter}')
