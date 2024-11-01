@@ -13,9 +13,6 @@ def fetch_page(url, depth=0):
     global global_counter
     if global_counter >= GLOBAL_MAX:
         raise Exception('Reached global max limit')
-    if depth > MAX_DEPTH:
-        print(f"Max depth of {MAX_DEPTH} reached")
-        return
 
     global_counter += 1
     print(f"Loading site: {url}")
@@ -24,8 +21,6 @@ def fetch_page(url, depth=0):
     print(f'Got {len(html) / 1024:.2f} KB of HTML')
     
     links = process_page(url, html)
-
-    # Now Recursively fetch links here:
 
 def process_page(url, html):
     soup = BeautifulSoup(html, 'html.parser')
